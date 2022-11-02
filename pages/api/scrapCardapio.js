@@ -56,7 +56,7 @@ const pegarCardapio = async (res) => {
 
     cardapio['result'] = result;
     const data = JSON.stringify(cardapio);
-    salvarCardapio(data)
+    // salvarCardapio(data)
     res.status(200).json(data)
 }
 

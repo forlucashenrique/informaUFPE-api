@@ -1,5 +1,5 @@
 import fs from 'fs';
-
+import cardapio from '../dados/cardapio-caa.json'
 export function salvarArtigos(dados){
   // salva os artigos no arquivo '../dados/artigos.json'
   fs.writeFile('../dados/artigos.json', dados, function (err) {
