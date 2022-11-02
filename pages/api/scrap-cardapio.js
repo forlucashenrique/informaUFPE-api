@@ -59,10 +59,9 @@ export default async function scrappingCardapio(req, res){
     const data = JSON.stringify(cardapio);
 
     salvarCardapio(data);
-
-
     
-    res.status(200).json({})
+    res.status(200).json(data)
+
   } catch(err) {
     res.status(400).json({'Error': err})
   }
