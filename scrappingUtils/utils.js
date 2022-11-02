@@ -1,5 +1,8 @@
 import fs from 'fs';
-import cardapio from '../dados/cardapio-caa.json'
+import path from 'path'
+
+const currentDirectory = path.join(process.cwd(), 'dados')
+
 export function salvarArtigos(dados){
   // salva os artigos no arquivo '../dados/artigos.json'
   fs.writeFile('../dados/artigos.json', dados, function (err) {
@@ -10,18 +13,20 @@ export function salvarArtigos(dados){
 
 export function salvarOportunidades(dados){
   // salva as oportunidades no arquivo '../dados/oportunidades.json'
-  fs.writeFile('../dados/oportunidades.json', dados, function (err) {
+  fs.writeFile(`${currentDirectory}\\oportunidades.json`, dados, function (err) {
     if (err) throw err;
     console.log('Oportunidades Saved!');
   });
+
 }
 
 export function salvarCardapio(dados){
   // salva o cardapio no arquivo '../dados/cardapio-caa.json'
-  fs.writeFile('../dados/cardapio-caa.json', dados, function (err) {
+  fs.writeFile(`${currentDirectory}\\cardapio-caa.json`, dados, function (err) {
     if (err) throw err;
     console.log('Cardapio Saved!');
   });
+
 }
 
 export function salvarNoticias(dados){
