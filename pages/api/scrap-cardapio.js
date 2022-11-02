@@ -3,9 +3,8 @@ import cheerio from 'cheerio';
 import { salvarCardapio } from '../../scrappingUtils/utils';
 
 
-export default async function scrappingCardapio(req, res){
-  try {
-    const cardapio = {};
+const pegarCardapio = async (res) => {
+  const cardapio = {};
     const result = []
     const url = 'https://www.ufpe.br/rucaa';
     const response = await axios.get(url);
@@ -57,11 +56,15 @@ export default async function scrappingCardapio(req, res){
 
     cardapio['result'] = result;
     const data = JSON.stringify(cardapio);
-
-    salvarCardapio(data);
-    
+    salvarCardapio(data)
     res.status(200).json(data)
+}
 
+export default function scrappingCardapio(req, res){
+  try {
+    
+    pegarCardapio(res)
+  
   } catch(err) {
     res.status(400).json({'Error': err})
   }
