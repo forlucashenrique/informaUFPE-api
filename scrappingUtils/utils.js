@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path'
 
-const currentDirectory = path.join(process.cwd(), 'dados')
+const currentDirectory = path.join(process.cwd(), 'dados/')
 
 export function salvarArtigos(dados){
   // salva os artigos no arquivo '../dados/artigos.json'
@@ -22,7 +22,7 @@ export function salvarOportunidades(dados){
 
 export function salvarCardapio(dados){
   // salva o cardapio no arquivo '../dados/cardapio-caa.json'
-  fs.writeFile(`${currentDirectory}\cardapio-caa.json`, dados, function (err) {
+  fs.writeFile(`${currentDirectory}cardapio-caa.json`, dados, function (err) {
     if (err) throw err;
     console.log('Cardapio Saved!');
   });
