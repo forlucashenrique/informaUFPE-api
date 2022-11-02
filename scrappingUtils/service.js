@@ -197,12 +197,12 @@ export function scrapNoticias(){
 export function scrapNoticiasCampus(){
   const noticias = {}
   const result = []
-  const url = 'https://www.ufpe.br/agencia/noticias-do-campus/-/asset_publisher/560IJ2hfNESM/rss';
+  const url = 'https://www.ufpe.br/caa/noticias-do-caa/-/asset_publisher/8TgQ0vpyChuQ/rss?p_p_cacheability=cacheLevelFull';
   axios.get(url)
     .then(res => {
       const xml = res.data;
       const $ = cheerio.load(xml);
-      const entryTags = $('entry');
+      const entryTags = $('item');
 
       entryTags.each(function() {
         const titulo = $('title', this).html();
