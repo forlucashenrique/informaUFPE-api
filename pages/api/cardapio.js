@@ -1,10 +1,10 @@
 import cardapio_json from '../../dados/cardapio-caa.json'
-import {scrapCardapio} from '../../scrappingUtils/service'
+
 
 export default function cardapio(req, res) {
   try {
-    scrapCardapio()
-    
+  
+    res.status(200).json(cardapio_json)
 
   } catch(err) {
     res.status(400).json({'Error': err})
