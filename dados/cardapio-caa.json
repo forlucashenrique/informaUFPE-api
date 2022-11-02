@@ -1,1 +1,146 @@
-{"result":[{"dia":"Segunda","refeicoes":{"almoco":[" Alface, repolho refogado, cenoura, cebola e pimentão "," Frango assado "," Gratinado de soja "," Feijão carioca "," Arroz com ervilha e milho verde ","Macarrão ao alho e óleo"," batata doce gratinada "," Refresco de uva "," Melão/ goiabada  "," "],"janta":["Creme de jerimum com charque","Sopa de legumes","Isca de carne chinesa","Empadão de legumes"," Macarrão com açafrão ","Pão/torrada"," Café ","Refresco de goiaba","Laranja"," "]}},{"dia":"Terça","refeicoes":{"almoco":[" Alface, vinagrete "," Paçoca de sol acebolada "," Ovos mexidos com verduras "," Feijão macassar "," Arroz com cenoura  "," Macarrão ao molho de tomate "," Purê de macaxeira "," Refresco de manga ","Abacaxi"],"janta":["Creme de legumes com ervilha","Sopa de peixe","Isca de frango ao molho rústico","Quiche de cenoura com chuchu","Macaxeira","Pão/ torrada","Café","Refresco de caju","Banana"]}},{"dia":"Quarta","refeicoes":{"almoco":[" FERIADO ","   ","   ","   ","   ","   ","   ","   ","   "],"janta":["FERIADO"," "," "," "," ","   "," ","   "," "]}},{"dia":"Quinta","refeicoes":{"almoco":[" Alface, acelga, cenoura e chuchu "," Frango à pizzaiolo "," Strogonoff de grão de bico "," Feijão carioca "," Arroz com vagem ","Macarrão colorido"," Purê de batata "," Refresco de caju "," Banana "],"janta":["Creme de batata com calabresa","Sopa de feijão","Charque com verduras","Ovos mexidos com verduras","Cuscuz"," Pão/ torrada  ","Café","Refresco de manga","Abacaxi"]}},{"dia":"Sexta","refeicoes":{"almoco":[" Alface acelga, couve, cenoura, tomate, pepino, cebola e pimentão "," Isca de carne imperial "," Empadão de legumes "," Feijão carioca "," Arroz com açafrão "," Macarrão ao alho e óleo "," Cuscuz temperado "," Refresco de manga "," Laranja "],"janta":["Caldo de feijão com azeitona","Canja","Bisteca ao molho barbecue","Torta de grão de bico","Batata doce"," Pão/ torrada ","Café"," Refresco de cajá ","Melão"]}}]}
+{
+  "result": [
+    { 
+      "id": 1,
+      "dia": "Segunda",
+      "refeicoes": {
+        "almoco": [
+          " Alface, repolho refogado, cenoura, cebola e pimentão ",
+          " Frango assado ",
+          " Gratinado de soja ",
+          " Feijão carioca ",
+          " Arroz com ervilha e milho verde ",
+          "Macarrão ao alho e óleo",
+          " batata doce gratinada ",
+          " Refresco de uva ",
+          " Melão/ goiabada  ",
+          " "
+        ],
+        "janta": [
+          "Creme de jerimum com charque",
+          "Sopa de legumes",
+          "Isca de carne chinesa",
+          "Empadão de legumes",
+          " Macarrão com açafrão ",
+          "Pão/torrada",
+          " Café ",
+          "Refresco de goiaba",
+          "Laranja",
+          " "
+        ]
+      }
+    },
+    { 
+      "id": 2,
+      "dia": "Terça",
+      "refeicoes": {
+        "almoco": [
+          " Alface, vinagrete ",
+          " Paçoca de sol acebolada ",
+          " Ovos mexidos com verduras ",
+          " Feijão macassar ",
+          " Arroz com cenoura  ",
+          " Macarrão ao molho de tomate ",
+          " Purê de macaxeira ",
+          " Refresco de manga ",
+          "Abacaxi"
+        ],
+        "janta": [
+          "Creme de legumes com ervilha",
+          "Sopa de peixe",
+          "Isca de frango ao molho rústico",
+          "Quiche de cenoura com chuchu",
+          "Macaxeira",
+          "Pão/ torrada",
+          "Café",
+          "Refresco de caju",
+          "Banana"
+        ]
+      }
+    },
+    { 
+      "id": 3,
+      "dia": "Quarta",
+      "refeicoes": {
+        "almoco": [
+          " FERIADO ",
+          "   ",
+          "   ",
+          "   ",
+          "   ",
+          "   ",
+          "   ",
+          "   ",
+          "   "
+        ],
+        "janta": [
+          "FERIADO",
+          " ",
+          " ",
+          " ",
+          " ",
+          "   ",
+          " ",
+          "   ",
+          " "
+        ]
+      }
+    },
+    {
+      "id": 4,
+      "dia": "Quinta",
+      "refeicoes": {
+        "almoco": [
+          " Alface, acelga, cenoura e chuchu ",
+          " Frango à pizzaiolo ",
+          " Strogonoff de grão de bico ",
+          " Feijão carioca ",
+          " Arroz com vagem ",
+          "Macarrão colorido",
+          " Purê de batata ",
+          " Refresco de caju ",
+          " Banana "
+        ],
+        "janta": [
+          "Creme de batata com calabresa",
+          "Sopa de feijão",
+          "Charque com verduras",
+          "Ovos mexidos com verduras",
+          "Cuscuz",
+          " Pão/ torrada  ",
+          "Café",
+          "Refresco de manga",
+          "Abacaxi"
+        ]
+      }
+    },
+    { 
+      "id": 5,
+      "dia": "Sexta",
+      "refeicoes": {
+        "almoco": [
+          " Alface acelga, couve, cenoura, tomate, pepino, cebola e pimentão ",
+          " Isca de carne imperial ",
+          " Empadão de legumes ",
+          " Feijão carioca ",
+          " Arroz com açafrão ",
+          " Macarrão ao alho e óleo ",
+          " Cuscuz temperado ",
+          " Refresco de manga ",
+          " Laranja "
+        ],
+        "janta": [
+          "Caldo de feijão com azeitona",
+          "Canja",
+          "Bisteca ao molho barbecue",
+          "Torta de grão de bico",
+          "Batata doce",
+          " Pão/ torrada ",
+          "Café",
+          " Refresco de cajá ",
+          "Melão"
+        ]
+      }
+    }
+  ]
+}
