@@ -1,5 +1,6 @@
 import axios from 'axios';
 import cheerio from 'cheerio';
+import { salvarCardapio } from '../../scrappingUtils/utils';
 
 
 export default function scrappingCardapio(req, res){

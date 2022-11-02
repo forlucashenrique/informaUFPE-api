@@ -1,6 +1,6 @@
 import fs from 'fs';
 
-function salvarArtigos(dados){
+export function salvarArtigos(dados){
   // salva os artigos no arquivo '../dados/artigos.json'
   fs.writeFile('../dados/artigos.json', dados, function (err) {
     if (err) throw err;
@@ -8,7 +8,7 @@ function salvarArtigos(dados){
   });
 }
 
-function salvarOportunidades(dados){
+export function salvarOportunidades(dados){
   // salva as oportunidades no arquivo '../dados/oportunidades.json'
   fs.writeFile('../dados/oportunidades.json', dados, function (err) {
     if (err) throw err;
@@ -16,7 +16,7 @@ function salvarOportunidades(dados){
   });
 }
 
-function salvarCardapio(dados){
+export function salvarCardapio(dados){
   // salva o cardapio no arquivo '../dados/cardapio-caa.json'
   fs.writeFile('../dados/cardapio-caa.json', dados, function (err) {
     if (err) throw err;
@@ -24,7 +24,7 @@ function salvarCardapio(dados){
   });
 }
 
-function salvarNoticias(dados){
+export function salvarNoticias(dados){
   // salva as noticias gerais no arquivo '../dados/noticias.json'
   fs.writeFile('../dados/noticias.json', dados, function (err) {
     if (err) throw err;
@@ -32,7 +32,7 @@ function salvarNoticias(dados){
   });
 }
 
-function salvarNoticiasCampus(dados) {
+export function salvarNoticiasCampus(dados) {
   // salva as noticias do campus no arquivo ../dados/noticias.json'
   fs.writeFile('../dados/noticias-campus.json', dados, function (err) {
     if (err) throw err;
@@ -40,12 +40,3 @@ function salvarNoticiasCampus(dados) {
   });
 }
 
-export default function Utils(){
-  return {
-    salvarArtigos,
-    salvarCardapio,
-    salvarNoticias,
-    salvarNoticiasCampus,
-    salvarOportunidades
-  }
-}
