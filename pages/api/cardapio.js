@@ -15,7 +15,8 @@ const pegarCardapio = async (res) => {
   let id = 0;
 
   spansDias.each(function(){
-    const nomeDia = $(this).text().trim();
+    const dia = {}
+    const nomeDia = $(this).text().trim().toLowerCase();
     const spanID = $(this).attr('id');
     const section = $(`[aria-labelledby=${spanID}]`);
     const tabelaIngredientes = $('table', section);
@@ -50,8 +51,8 @@ const pegarCardapio = async (res) => {
       ingredientesJantar.push(ingredienteJantar);
       
     })
-    
-    result.push({'id': id, 'dia': nomeDia, 'refeicoes': {'almoco': ingredientesAlmoco, 'janta': ingredientesJantar}});
+    dia[nomeDia] = {'almoco': ingredientesAlmoco, 'janta': ingredientesJantar}
+    result.push({'id': id, ...dia});
 
     id += 1
     
