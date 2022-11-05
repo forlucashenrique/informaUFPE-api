@@ -4,7 +4,7 @@ import cheerio from 'cheerio';
 
 const pegarCardapio = async (res) => {
   const cardapio = {};
-  const result = []
+  const result = {}
   const url = 'https://www.ufpe.br/rucaa';
   const response = await axios.get(url);
   const html = response.data;
@@ -51,11 +51,10 @@ const pegarCardapio = async (res) => {
       ingredientesJantar.push(ingredienteJantar);
       
     })
-    dia[nomeDia] = {'almoco': ingredientesAlmoco, 'janta': ingredientesJantar}
-    result.push({'id': id, ...dia});
+  
 
-    id += 1
-    
+    result[nomeDia] =  {'almoco': ingredientesAlmoco, 'janta': ingredientesJantar}
+
   })
 
   cardapio['result'] = result;
