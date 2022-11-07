@@ -1,4 +1,4 @@
-import horario_onibus from '../../dados/horario-onibus.json'
+import horario_onibus from '../../../dados/horario-onibus.json'
 
 
 export default function orarioOnibus(req, res){
