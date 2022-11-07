@@ -13,15 +13,16 @@ const pegarNoticias = async (res) => {
   let id = 0;
 
   itemTags.each(function() {
-    const titulo = $('title', this).html();
+    const title = $('title', this).html();
     const linkHref = $('guid', this).html();
     const published = $('pubDate', this).html();
     
-
+    const linkSplited = linkHref.split('/');
+    const idNews = linkSplited[linkSplited.length - 1]
     result.push({
       "id": id,
-      'titulo': titulo,
-      'link': linkHref,
+      'title': title,
+      'idNews': idNews,
       'published': published,
     
     })
