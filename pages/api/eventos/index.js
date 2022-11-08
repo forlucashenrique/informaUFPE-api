@@ -31,6 +31,7 @@ const getEvents = async (res) => {
         'locale': localeEvent,
         'createdAt': createdEventAt,
       })
+      
       id += 1
     }
   })

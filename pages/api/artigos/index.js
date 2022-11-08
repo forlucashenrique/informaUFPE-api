@@ -16,11 +16,13 @@ const pegarArtigos = async (res) => {
     const author = $('name', this).html();
     const updated = $('updated', this).html();
     const published = $('published', this).html();
-
+    const linkSplited = linkHref.split('/');
+    const idArticle = linkSplited[linkSplited.length - 1]
+    
     result.push({
       'id': id,
       'titulo': titulo,
-      'link': linkHref,
+      'idArticle': idArticle,
       'author': author,
       'updated': updated,
       'published': published
