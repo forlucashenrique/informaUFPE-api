@@ -11,7 +11,7 @@ const pegarArtigos = async (res) => {
   const entryTags = $('entry');
   let id = 0;
   entryTags.each(function() {
-    const titulo = $('title', this).html();
+    const title = $('title', this).html();
     const linkHref = $('link', this).attr('href');
     const author = $('name', this).html();
     const updated = $('updated', this).html();
@@ -21,7 +21,7 @@ const pegarArtigos = async (res) => {
     
     result.push({
       'id': id,
-      'titulo': titulo,
+      'title': title,
       'idArticle': idArticle,
       'author': author,
       'updated': updated,
