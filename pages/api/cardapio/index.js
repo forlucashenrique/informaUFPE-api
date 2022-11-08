@@ -15,7 +15,6 @@ const pegarCardapio = async (res) => {
   let id = 0;
 
   spansDias.each(function(){
-    const dia = {}
     const nomeDia = $(this).text().trim().toLowerCase();
     const spanID = $(this).attr('id');
     const section = $(`[aria-labelledby=${spanID}]`);

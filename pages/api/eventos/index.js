@@ -12,18 +12,14 @@ const pegarEventos = async (res) => {
   const divListEvents = $('.list-events');
   const listEvents = $('ul', divListEvents);
   const itensEvents = listEvents.children();
-  // console.log(itensEvents.html());
+
   let id = 0;
   itensEvents.each(function(){
     const createdEventAt = $('time', this).attr('datetime'); 
     const linkEvent = $('a', this).attr('href');
     const titleEvent = $('h4', this).text();
     const localeEvent = $('p', this).text();
-
-    console.log(titleEvent);
-    console.log(createdEventAt);
-    console.log(localeEvent);
-    console.log('-'.repeat(20));
+    
     if(titleEvent){
       result.push({
         'id': id,
@@ -34,8 +30,6 @@ const pegarEventos = async (res) => {
 
       })
       id += 1
-
-      
     }
   })
 
@@ -45,6 +39,11 @@ const pegarEventos = async (res) => {
 }
 
 export default function Eventos(req, res) {
-  pegarEventos(res)
-  // res.json({'Msg': 'OK'})
+  try {
+    pegarEventos(res)
+
+  } catch(err) {
+    res.status(400).json({'Error': err })
+  }
+
 }
