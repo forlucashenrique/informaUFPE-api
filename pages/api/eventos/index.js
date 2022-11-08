@@ -2,7 +2,7 @@ import axios from 'axios';
 import cheerio from 'cheerio';
 
 
-const pegarEventos = async (res) => {
+const getEvents = async (res) => {
   const events = {};
   const result = [];
   const url = 'https://www.ufpe.br/caa/eventoscaa';
@@ -19,15 +19,17 @@ const pegarEventos = async (res) => {
     const linkEvent = $('a', this).attr('href');
     const titleEvent = $('h4', this).text();
     const localeEvent = $('p', this).text();
-    
+
     if(titleEvent){
+      const linkSplitedOne = linkEvent.split('?')
+      const linkSplitedTwo = linkSplitedOne[0].split('/')
+
       result.push({
         'id': id,
         'title': titleEvent,
-        'linkEvent': linkEvent,
+        'idEvent': linkSplitedTwo[linkSplitedTwo.length - 1],
         'locale': localeEvent,
         'createdAt': createdEventAt,
-
       })
       id += 1
     }
@@ -38,9 +40,9 @@ const pegarEventos = async (res) => {
   res.status(200).json(events)
 }
 
-export default function Eventos(req, res) {
+export default function ListEvents(req, res) {
   try {
-    pegarEventos(res)
+    getEvents(res)
 
   } catch(err) {
     res.status(400).json({'Error': err })

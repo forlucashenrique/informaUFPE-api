@@ -14,7 +14,7 @@ const getNews = async (id, res)  => {
   res.json(result);
 }
 
-export default function noticia(req, res) {
+export default function News(req, res) {
   const {id} = req.query
   
   getNews(id, res);

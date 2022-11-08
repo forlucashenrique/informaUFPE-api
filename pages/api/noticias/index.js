@@ -1,7 +1,7 @@
 import axios from "axios";
 import cheerio from 'cheerio';
 
-const pegarNoticias = async (res) => {
+const getNews = async (res) => {
   const noticias = {}
   const result = []
   const url = 'https://www.ufpe.br/caa/noticias-do-caa/-/asset_publisher/8TgQ0vpyChuQ/rss?p_p_cacheability=cacheLevelFull';
@@ -34,9 +34,9 @@ const pegarNoticias = async (res) => {
   res.status(200).json(noticias);
 }
 
-export default function Noticias(req, res) {
+export default function ListNews(req, res) {
   try {
-    pegarNoticias(res)
+    getNews(res)
   } catch (err) {
     res.status(400).json({'Error': err});
   }
