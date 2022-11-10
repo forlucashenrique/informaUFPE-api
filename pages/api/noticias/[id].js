@@ -8,7 +8,7 @@ const getNews = async (id, res)  => {
   const html = response.data;
   const $ = cheerio.load(html);
 
-  const divContent = $('.journal-content-article');
+  const divContent = $('.full-content__full-content');
   result.html = `${divContent}`;
 
   res.json(result);
