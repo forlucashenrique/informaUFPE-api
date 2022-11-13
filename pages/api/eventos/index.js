@@ -8,8 +8,7 @@ export default async function ListEvents(req, res) {
   try {
     const events = {};
     const result = [];
-    const url = 'https://www.ufpe.br/caa/eventoscaa';
-    const response = await api.get(url);
+    const response = await api.get('/caa/eventoscaa');
     const html = response.data;
     const $ = cheerio.load(html);
     const divListEvents = $('.list-events');

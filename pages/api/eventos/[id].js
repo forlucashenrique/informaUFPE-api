@@ -13,6 +13,7 @@ export default async function Event(req, res) {
 
     const divContent = $('.asset-content > div:first-child');
     result.html = `${divContent}`;
+    
     res.setHeader(
       'Cache-Control',
       's-maxage=86400',

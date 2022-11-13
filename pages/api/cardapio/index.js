@@ -104,6 +104,14 @@ export default async function Cardapio(req, res){
         ingredientesJantar.push(ingredienteJantar);
         
       })
+
+      if (!ingredientesAlmoco[0]) {
+        ingredientesAlmoco[0] = 'RU FECHADO'
+      }
+
+      if (!ingredientesJantar[0]) {
+        ingredientesJantar[0] = 'RU FECHADO'
+      }
       
       result[nomeDia] =  {'almoco': ingredientesAlmoco, 'janta': ingredientesJantar};
   
