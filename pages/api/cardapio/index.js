@@ -1,4 +1,4 @@
-import axios from 'axios';
+import api from '../../../service/api';
 import cheerio from 'cheerio';
 
 
@@ -58,13 +58,69 @@ const getMenu = async (res) => {
 }
 
 
-export default function Cardapio(req, res){
+export default async function Cardapio(req, res){
   try {
     
-    getMenu(res)
+    const cardapio = {};
+    const result = {}
+    const response = await api.get(`/rucaa`);
+    const html = response.data;
+    const $ = cheerio.load(html);
+    const spansDias = $('.tabs nav span');
+  
+    spansDias.each(function(){
+      const nomeDia = $(this).text().trim().toLowerCase();
+      const spanID = $(this).attr('id');
+      const section = $(`[aria-labelledby=${spanID}]`);
+      const tabelaIngredientes = $('table', section);
+      const tabelaSecundaria = $('table', tabelaIngredientes);
+      const tabelaTres = $('table', tabelaSecundaria);
+      
+      let tbody;
+      
+      if(nomeDia === 'Sexta'){
+        tbody = $('tbody', tabelaTres);
+      } 
+      else if (nomeDia === 'Quarta' || nomeDia === 'Quinta') {
+        tbody = $('tbody', tabelaSecundaria);
+      }
+      else {
+        tbody = $('tbody', tabelaIngredientes);
+      }
+  
+      const tr = $('tr:not(:first-child)', tbody);
+  
+  
+      const ingredientesAlmoco = [];
+      const ingredientesJantar = [];
+  
+      tr.each(function(){
+        const almocoColuna = $('td:first-child', this);
+        const jantarColuna = $('td:last-child', this);
+        const ingredienteAlmoco = $(almocoColuna).text().trim();
+        const ingredienteJantar = $(jantarColuna).text().trim();
+  
+        ingredientesAlmoco.push(ingredienteAlmoco);
+        ingredientesJantar.push(ingredienteJantar);
+        
+      })
+      
+      result[nomeDia] =  {'almoco': ingredientesAlmoco, 'janta': ingredientesJantar};
+  
+    })
+  
+    cardapio['result'] = result;
+
+    res.setHeader(
+      'Cache-Control',
+      's-maxage=86400',
+      'stale-while-revalidate'
+    );
+
+    res.status(200).json(cardapio);
   
   } catch(err) {
-    res.status(400).json({'Error': err})
+    res.status(500).json({error: 'failed to load data'});
   }
   
 }

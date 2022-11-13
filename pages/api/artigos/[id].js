@@ -1,27 +1,28 @@
-import axios  from "axios"
+import api from '../../../service/api';
 import cheerio from 'cheerio';
 
-const getArticle = async (id, res)  => {
-  const result = {}
-  const url = `https://www.ufpe.br/agencia/artigos/-/asset_publisher/560IJ2hfNESM/content/id/${id}`;
-  const response = await axios.get(url);
-  const html = response.data;
-  const $ = cheerio.load(html);
-
-  const divContent = $('.full-content__full-content');
-  result.html = `${divContent}`;
-
-  res.json(result);
-}
-
-export default function Article(req, res) {
+export default async function Article(req, res) {
   const {id} = req.query
 
   try {
-    getArticle(id, res);
+    const result = {}
+    const response = await api.get(`/agencia/artigos/-/asset_publisher/560IJ2hfNESM/content/id/${id}`);
+    const html = response.data;
+    const $ = cheerio.load(html);
+
+    const divContent = $('.full-content__full-content');
+    result.html = `${divContent}`;
+
+    
+    res.setHeader(
+      'Cache-Control',
+      's-maxage=86400',
+      'stale-while-revalidate'
+    );
+    res.status(200).json(result);
 
   } catch(err) {
-    res.status(400).json({'Erro': err})
+    res.status(500).json({error: 'failed to load data'});
   }
   
 }
