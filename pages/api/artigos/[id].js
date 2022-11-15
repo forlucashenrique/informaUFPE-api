@@ -19,6 +19,7 @@ export default async function Article(req, res) {
       's-maxage=86400',
       'stale-while-revalidate'
     );
+    
     res.status(200).json(result);
 
   } catch(err) {

@@ -1,7 +1,6 @@
 import api from '../../../service/api';
 import cheerio from 'cheerio';
 
-
 export default async function News(req, res) {
   const {id} = req.query
   
@@ -13,6 +12,7 @@ export default async function News(req, res) {
 
     const divContent = $('.full-content__full-content');
     result.html = `${divContent}`;
+
     res.setHeader(
       'Cache-Control',
       's-maxage=86400',

@@ -2,8 +2,6 @@ import api from '../../../service/api';
 import cheerio from 'cheerio';
 
 
-
-
 export default async function ListEvents(req, res) {
   try {
     const events = {};
@@ -16,6 +14,7 @@ export default async function ListEvents(req, res) {
     const itensEvents = listEvents.children();
 
     let id = 0;
+
     itensEvents.each(function(){
       const createdEventAt = $('time', this).attr('datetime'); 
       const linkEvent = $('a', this).attr('href');
