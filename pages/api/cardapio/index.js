@@ -13,7 +13,7 @@ export default async function Cardapio(req, res){
     const spansDias = $('.tabs nav span');
   
     spansDias.each(function(){
-      const nomeDia = $(this).text().trim().toLowerCase();
+      let nomeDia = $(this).text().trim().toLowerCase();
       const spanID = $(this).attr('id');
       const section = $(`[aria-labelledby=${spanID}]`);
       const tabelaIngredientes = $('table', section);
@@ -56,8 +56,30 @@ export default async function Cardapio(req, res){
       if (!ingredientesJantar[0]) {
         ingredientesJantar[0] = 'RU FECHADO'
       }
+
+      switch(nomeDia){
+        case 'segunda':
+          nomeDia = 'Seg';
+          break;
+        case 'terça':
+          nomeDia = 'Ter';
+          break;
+        case 'quarta':
+          nomeDia = 'Qua';
+          break;
+        case 'quinta':
+          nomeDia = 'Qui';
+          break;
+        case 'sexta':
+          nomeDia = 'Sex';
+          break;
+
+        default: 
+          break;
+      }
       
-      result[nomeDia] =  {'almoco': ingredientesAlmoco, 'janta': ingredientesJantar};
+      
+      result[nomeDia] =  {'lunch': ingredientesAlmoco, 'dinner': ingredientesJantar};
   
     })
   
