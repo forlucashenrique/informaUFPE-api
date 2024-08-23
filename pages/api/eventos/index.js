@@ -46,6 +46,8 @@ export default async function ListEvents(req, res) {
     res.status(200).json(events)
 
   } catch(err) {
+
+    console.log(err)
     res.status(500).json({error: 'failed to load data'});
   }
 

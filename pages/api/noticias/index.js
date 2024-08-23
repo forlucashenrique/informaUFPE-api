@@ -1,14 +1,21 @@
 import api from '../../../service/api';
 import cheerio from 'cheerio';
+import https from 'https';
 
 export default async function ListNews(req, res) {
   try {
     const noticias = {}
     const result = []
-    const response = await api.get('/caa/noticias-do-caa/-/asset_publisher/8TgQ0vpyChuQ/rss?p_p_cacheability=cacheLevelFull');
+    const response = await api.get('/caa/noticias-do-caa/-/asset_publisher/8TgQ0vpyChuQ/rss?p_p_cacheability=cacheLevelFull', {
+      httpsAgent: new https.Agent({ rejectUnauthorized: false })
+    });
+
+    console.log(response.data)
+
     const xml = response.data;
     const $ = cheerio.load(xml);
     const itemTags = $('item');
+
 
     let id = 0;
 
@@ -24,7 +31,6 @@ export default async function ListNews(req, res) {
         'title': title,
         'idNews': idNews,
         'published': published,
-      
       })
 
       id += 1
@@ -39,6 +45,9 @@ export default async function ListNews(req, res) {
     res.status(200).json(noticias);
 
   } catch (err) {
+
+    console.log(err)
+
     res.status(500).json({error: 'failed to load data'});
   }
 }

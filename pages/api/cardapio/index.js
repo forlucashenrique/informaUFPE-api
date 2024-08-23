@@ -1,19 +1,23 @@
 import api from '../../../service/api';
 import cheerio from 'cheerio';
-
+import https from 'https';
 
 export default async function Cardapio(req, res){
   try {
     
     const cardapio = {};
     const result = {}
-    const response = await api.get(`/rucaa`);
+    const response = await api.get(`/rucaa`, {
+      httpsAgent: new https.Agent({ rejectUnauthorized: false })
+    });
+
+
     const html = response.data;
     const $ = cheerio.load(html);
     const spansDias = $('.tabs nav span');
   
     spansDias.each(function(){
-      const nomeDia = $(this).text().trim().toLowerCase();
+      let nomeDia = $(this).text().trim().toLowerCase();
       const spanID = $(this).attr('id');
       const section = $(`[aria-labelledby=${spanID}]`);
       const tabelaIngredientes = $('table', section);
@@ -56,8 +60,30 @@ export default async function Cardapio(req, res){
       if (!ingredientesJantar[0]) {
         ingredientesJantar[0] = 'RU FECHADO'
       }
+
+      switch(nomeDia){
+        case 'segunda':
+          nomeDia = 'Seg';
+          break;
+        case 'terça':
+          nomeDia = 'Ter';
+          break;
+        case 'quarta':
+          nomeDia = 'Qua';
+          break;
+        case 'quinta':
+          nomeDia = 'Qui';
+          break;
+        case 'sexta':
+          nomeDia = 'Sex';
+          break;
+
+        default: 
+          break;
+      }
       
-      result[nomeDia] =  {'almoco': ingredientesAlmoco, 'janta': ingredientesJantar};
+      
+      result[nomeDia] =  {'lunch': ingredientesAlmoco, 'dinner': ingredientesJantar};
   
     })
   
@@ -66,12 +92,15 @@ export default async function Cardapio(req, res){
     res.setHeader(
       'Cache-Control',
       's-maxage=86400',
-      'stale-while-revalidate'
+      'stale-while-revalidate',
+    
     );
 
     res.status(200).json(cardapio);
   
   } catch(err) {
+    console.log(err)
+
     res.status(500).json({error: 'failed to load data'});
   }
   
