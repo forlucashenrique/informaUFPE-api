@@ -1,13 +1,17 @@
 import api from '../../../service/api';
 import cheerio from 'cheerio';
-
+import https from 'https';
 
 export default async function Cardapio(req, res){
   try {
     
     const cardapio = {};
     const result = {}
-    const response = await api.get(`/rucaa`);
+    const response = await api.get(`/rucaa`, {
+      httpsAgent: new https.Agent({ rejectUnauthorized: false })
+    });
+
+
     const html = response.data;
     const $ = cheerio.load(html);
     const spansDias = $('.tabs nav span');
@@ -88,12 +92,15 @@ export default async function Cardapio(req, res){
     res.setHeader(
       'Cache-Control',
       's-maxage=86400',
-      'stale-while-revalidate'
+      'stale-while-revalidate',
+    
     );
 
     res.status(200).json(cardapio);
   
   } catch(err) {
+    console.log(err)
+
     res.status(500).json({error: 'failed to load data'});
   }
   
