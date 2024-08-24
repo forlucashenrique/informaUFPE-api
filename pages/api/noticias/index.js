@@ -10,7 +10,7 @@ export default async function ListNews(req, res) {
       httpsAgent: new https.Agent({ rejectUnauthorized: false })
     });
 
-    console.log(response.data)
+
 
     const xml = response.data;
     const $ = cheerio.load(xml);
@@ -36,12 +36,35 @@ export default async function ListNews(req, res) {
       id += 1
     })
 
+    
+    const firstNewsPhoto = async () => {
+      const response = await api.get(`/caa/noticias-do-caa/-/asset_publisher/8TgQ0vpyChuQ/content/id/${result[0].idNews}`, {
+        httpsAgent: new https.Agent({ rejectUnauthorized: false })
+      });
+      const html = response.data;
+      const $ = cheerio.load(html);
+      const img = $('.asset-content img').attr('src');
+
+      const imgSplited = img.split('/documents')
+
+      const imgPath = `/documents${imgSplited[1]}`
+
+      return imgPath;
+    }
+
+    
+
     noticias['result'] = result;
+
+    noticias['result'][0].imgPath = await firstNewsPhoto();
+
     res.setHeader(
       'Cache-Control',
       's-maxage=86400',
       'stale-while-revalidate'
     );
+
+
     res.status(200).json(noticias);
 
   } catch (err) {

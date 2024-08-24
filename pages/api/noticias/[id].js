@@ -13,14 +13,17 @@ export default async function News(req, res) {
     const html = response.data;
     const $ = cheerio.load(html);
 
-    const divContent = $('.full-content__full-content');
+    const divContent = $('.full-content__full-content')
     result.html = `${divContent}`;
+
+   
 
     res.setHeader(
       'Cache-Control',
       's-maxage=86400',
       'stale-while-revalidate'
     );
+
     res.status(200).json(result);
 
   } catch(err) {
