@@ -15,11 +15,65 @@ export default async function Cardapio(req, res){
     const html = response.data;
     const $ = cheerio.load(html);
     const spansDias = $('.tabs nav span');
+    
+    let menu = {}
   
-    spansDias.each(function(){
-      let nomeDia = $(this).text().trim().toLowerCase();
-      const spanID = $(this).attr('id');
-      const section = $(`[aria-labelledby=${spanID}]`);
+    let lunch = {
+        
+    }
+
+
+    spansDias.each(function() {
+      let nomeDia = $(this).text().trim().toLowerCase().split(' ')[0];
+      console.log(nomeDia)
+
+      //const spanID = $(this).attr('id');
+      // const section = $(`[aria-labelledby=${spanID}]`);
+
+      const section = $('.tabs__content');
+      const tableMenu = $('table', section);
+
+      const tableLines = $('tr', tableMenu);
+
+      
+      tableLines.each(function(index, element){
+        console.log($(element).html())
+
+        if (index < 2) return;
+
+        const columns = $('td', element);
+
+        if (lunch[nomeDia] === undefined) {
+          lunch[nomeDia] = []
+        } else {
+          lunch[nomeDia] = [
+            ...lunch[nomeDia],
+            {
+              [$(columns[0]).text()]: $(columns[1]).text(),
+            }
+          ]
+        }
+
+
+
+        
+
+        // columns.each(function(index, element){
+          
+        //   if (index === 0) {
+        //     lunch = {...lunch, [$(element).text()]: [] }
+        //   }
+
+
+        // })
+
+
+        
+        // console.log(nomeDia)
+        // console.log('================================')
+        // console.log($(element).text())
+      })
+
       const tabelaIngredientes = $('table', section);
       const tabelaSecundaria = $('table', tabelaIngredientes);
       const tabelaTres = $('table', tabelaSecundaria);
@@ -37,7 +91,6 @@ export default async function Cardapio(req, res){
       }
   
       const tr = $('tr:not(:first-child)', tbody);
-  
   
       const ingredientesAlmoco = [];
       const ingredientesJantar = [];
@@ -85,7 +138,9 @@ export default async function Cardapio(req, res){
       
       result[nomeDia] =  {'lunch': ingredientesAlmoco, 'dinner': ingredientesJantar};
   
+      console.log(lunch)
     })
+
   
     cardapio['result'] = result;
 
