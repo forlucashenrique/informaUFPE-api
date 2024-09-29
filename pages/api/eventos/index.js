@@ -79,10 +79,10 @@ export default async function ListEvents(req, res) {
       const markedDate = {
           [date]: {
               marked: true,
-              dotColor: '#262D33',
+              dotColor: '#0B3472',
               dots: [{
                   key: 'meeting',
-                  color: '#262D33',
+                  color: '#0B3472',
               }]
           }
       }
