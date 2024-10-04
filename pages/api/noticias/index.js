@@ -26,6 +26,7 @@ export default async function ListNews(req, res) {
       
       const linkSplited = linkHref.split('/');
       const idNews = linkSplited[linkSplited.length - 1]
+      
       result.push({
         "id": id,
         'title': title,
@@ -45,14 +46,14 @@ export default async function ListNews(req, res) {
       const $ = cheerio.load(html);
       const img = $('.asset-content img').attr('src');
 
+      if (!img) return ''
+    
       const imgSplited = img.split('/documents')
 
       const imgPath = `/documents${imgSplited[1]}`
 
       return imgPath;
     }
-
-    
 
     noticias['result'] = result;
 
@@ -64,7 +65,7 @@ export default async function ListNews(req, res) {
       'stale-while-revalidate'
     );
 
-
+  
     res.status(200).json(noticias);
 
   } catch (err) {

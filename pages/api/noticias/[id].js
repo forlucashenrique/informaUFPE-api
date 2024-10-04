@@ -24,7 +24,11 @@ export default async function News(req, res) {
       'stale-while-revalidate'
     );
 
+
+
     res.status(200).json(result);
+
+    
 
   } catch(err) {
     res.status(500).json({error: 'failed to load data'});

@@ -55,6 +55,8 @@ export default async function ListEvents(req, res) {
       const titleEvent = $('h4', this).text().trim();
       const localeEvent = $('p', this).text().trim();
 
+    
+
       if(titleEvent){
         const linkSplitedOne = linkEvent.split('?')
         const linkSplitedTwo = linkSplitedOne[0].split('/')
@@ -64,6 +66,7 @@ export default async function ListEvents(req, res) {
           'title': titleEvent,
           'idEvent': linkSplitedTwo[linkSplitedTwo.length - 1],
           'locale': localeEvent,
+          'link': linkEvent,
           'createdAt': formatDate(createdEventAt),
         })
         

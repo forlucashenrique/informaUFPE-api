@@ -91,7 +91,6 @@ export default async function Cardapio(req, res){
       'Cache-Control',
       's-maxage=86400',
       'stale-while-revalidate',
-    
     );
 
     res.status(200).json(menu);
